@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
 	FormGroup,
 	TextField,
@@ -6,7 +7,6 @@ import {
 	InputLabel,
 	Select,
 	Switch,
-	MenuItem,
 	Radio,
 	RadioGroup,
 	FormControlLabel,
@@ -55,8 +55,9 @@ const useStyles = makeStyles({
 	},
 });
 
-function Form() {
-	const [post, setPost] = useState([]);
+function Form({ post, setPost }) {
+	const history = useHistory();
+
 	const [buttonDisabled, setButtonDisabled] = useState(true);
 	const [formState, setFormState] = useState({
 		name: '',
@@ -145,6 +146,7 @@ function Form() {
 					glutenFree: false,
 					comments: '',
 				});
+				history.push('/thankyou');
 			})
 			.catch((err) => {
 				console.log(err);
@@ -364,7 +366,6 @@ function Form() {
 					</Grid>
 				</form>
 			</Grid>
-			<pre>{JSON.stringify(post, null, 2)}</pre>
 		</Grid>
 	);
 }
