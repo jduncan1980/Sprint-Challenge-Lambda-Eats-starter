@@ -1,11 +1,32 @@
-import React from "react";
+import React from 'react';
+import { Container } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
+import { Route, Switch } from 'react-router-dom';
 
-const App = () => {
-  return (
-    <>
-      <h1>Lambda Eats</h1>
-      <p>You can remove this code and create your own header</p>
-    </>
-  );
-};
+import Navbar from './components/Navbar';
+import Form from './components/Form';
+import Home from './components/Home';
+
+const useStyles = makeStyles({
+	container: {
+		maxWidth: '100vw',
+	},
+});
+function App() {
+	const classes = useStyles();
+	return (
+		<Container className={classes.container}>
+			<Navbar />
+			<Switch>
+				<Route exact path='/'>
+					<Home />
+				</Route>
+				<Route path='/order'>
+					<Form />
+				</Route>
+			</Switch>
+		</Container>
+	);
+}
+
 export default App;
